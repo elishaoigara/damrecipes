@@ -1,24 +1,51 @@
-import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import React from "react";
+import { Card, Button, OverlayTrigger, Tooltip, Badge } from "react-bootstrap";
 
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, buttonLabel = "🍽 View Recipe" }) {
   return (
-    <Card className="h-100 shadow-sm">
-      <Card.Img
-        variant="top"
-        src={recipe.image}
-        alt={recipe.title}
-      />
-      <Card.Body>
-        <Card.Title>{recipe.title}</Card.Title>
+    <Card className="h-100 recipe-card shadow-sm border-0 rounded-4">
+      {/* Image Section */}
+      <div className="image-wrapper">
+        <Card.Img
+          variant="top"
+          src={recipe.image}
+          alt={`Recipe for ${recipe.title}`}
+          className="recipe-img"
+        />
+      </div>
+
+      {/* Card Body */}
+      <Card.Body className="d-flex flex-column justify-content-between">
+        <OverlayTrigger placement="top" overlay={<Tooltip>{recipe.title}</Tooltip>}>
+          <Card.Title className="fw-semibold text-center text-truncate recipe-title">
+            {recipe.title}
+          </Card.Title>
+        </OverlayTrigger>
+
+        {/* Optional Metadata */}
+        {recipe.readyInMinutes && (
+          <p className="text-muted small text-center mb-2">
+            ⏱ {recipe.readyInMinutes} mins | 🍽 {recipe.servings} servings
+          </p>
+        )}
+
+        {/* Badges */}
+        <div className="text-center mb-2">
+          {recipe.vegetarian && <Badge bg="success" className="me-1">🥦 Veg</Badge>}
+          {recipe.vegan && <Badge bg="dark" className="me-1">🌱 Vegan</Badge>}
+          {recipe.glutenFree && <Badge bg="info">🚫 Gluten</Badge>}
+        </div>
+
+        {/* Action Button */}
         <Button
-          variant="success"
           href={`https://spoonacular.com/recipes/${recipe.title
             .toLowerCase()
             .replace(/ /g, "-")}-${recipe.id}`}
           target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 recipe-btn fw-semibold"
         >
-          View Recipe
+          {buttonLabel}
         </Button>
       </Card.Body>
     </Card>

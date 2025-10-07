@@ -1,38 +1,175 @@
-.App {
-  text-align: center;
+/* 🎨 Theme Colors */
+:root {
+  --cream: #fffbea;
+  --yellow: #f9d342;
+  --dark-yellow: #f5b400;
+  --text-dark: #2f2f2f;
+  --card-bg: #fffdf6;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* 🌍 Global Styles */
+body {
+  background: linear-gradient(135deg, var(--cream), #fff8dc);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-weight: 700;
+  color: var(--dark-yellow);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* 🔍 Search Bar */
+.search-bar {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 0 auto;
+}
+
+.search-input {
+  border: none !important;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 50px 0 0 50px;
+}
+
+.search-input:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.search-btn {
+  background: var(--yellow);
+  border: none;
+  color: #333;
+  font-weight: 600;
+  padding: 0 24px;
+  border-radius: 0 50px 50px 0;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: var(--dark-yellow);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* 🌙 Mode Toggle */
+.toggle-btn {
+  border-radius: 50px !important;
+  margin: 0 5px;
+  padding: 8px 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.btn-check:checked + .btn-outline-dark,
+.btn-outline-dark:hover {
+  background-color: var(--yellow);
+  color: var(--text-dark);
+  border: none;
+  font-weight: 600;
+}
+
+/* 🍲 Recipe Card */
+.recipe-card {
+  background: #fff8e7;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-dark);
+  text-align: center;
+  margin: 0.8rem 0;
+}
+
+/* 🍴 Recipe Button */
+.recipe-btn {
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: white !important;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.recipe-btn:hover {
+  background: linear-gradient(135deg, #218838, #1e7e34);
+  transform: translateY(-2px);
+}
+
+/* 🧑‍🍳 Recipe Details */
+.recipe-name {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: var(--dark-yellow);
+}
+
+.ingredient-list,
+.instruction-list {
+  margin-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.ingredient-list li,
+.instruction-list li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* 🤖 AI Suggestions */
+.ai-card {
+  background: var(--card-bg);
+  border-left: 5px solid var(--yellow);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  margin-top: 20px;
+}
+
+.ai-card h5 {
+  color: var(--dark-yellow);
+  font-weight: 700;
+}
+
+.ai-card pre {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* 📱 Responsive Grid */
+@media (min-width: 768px) {
+  .recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
   }
 }
